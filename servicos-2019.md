@@ -365,7 +365,7 @@ Para utilizar o Thunderbird Mail na máquina física, será necessário adiciona
 
 ## Referências
 
-* CAMARGO, J. Q. Integração de Sistemas e Serviços com Samba e LDAP. Lavras: UFLA/FAEPE, 2011. \(Curso de Pós Graduação "Lato Sensu"\(Especialização\) a Distância em Administração em Redes Linux\).
+* CAMARGO, H. A. Integração de Sistemas e Serviços com Samba e LDAP. Lavras: UFLA/FAEPE, 2011. \(Curso de Pós Graduação "Lato Sensu"\(Especialização\) a Distância em Administração em Redes Linux\).
 * [https://www.vennedey.net/resources/2-LDAP-managed-mail-server-with-Postfix-and-Dovecot-for-multiple-domains\#ldap](https://www.vennedey.net/resources/2-LDAP-managed-mail-server-with-Postfix-and-Dovecot-for-multiple-domains#ldap)
 * [http://www.postfix.org/documentation.html](http://www.postfix.org/documentation.html)
 * [https://linux.die.net/man/8/nscd](https://linux.die.net/man/8/nscd)
