@@ -9,11 +9,11 @@ description: >-
 
 ## Introdução
 
-Este relatório apresenta a integração dos serviços de envio e recebimento de e-mail, através dos protocolos SMTP e IMAP, utilizando os softwares Postfix e Dovecot integrados a uma base de dados LDAP. Iremos utilizar o Sistema Operacional CentOS 7, o mesmo pode ser  obtido em [https://www.centos.org/download/](https://www.centos.org/download/)
+Este relatório apresenta a integração dos serviços de envio e recebimento de e-mail, através dos protocolos SMTP e IMAP, utilizando os softwares Postfix e Dovecot integrados a uma base de dados LDAP. Iremos utilizar o Sistema Operacional CentOS 7, o mesmo pode ser obtido em [https://www.centos.org/download/](https://www.centos.org/download/)
 
 ## LDAP
 
-#### Estrutura Organizacional
+### Estrutura Organizacional
 
 ![Figura 1 - Estrutura organizacional.](.gitbook/assets/image%20%283%29.png)
 
@@ -78,7 +78,7 @@ to attrs=userPassword
   by self =xw
   by anonymous auth
   by * none
-  
+
 to dn.subtree="ou=Usuarios,dc=gabriel,dc=labredes,dc=info"
   by dn.base="cn=mailAdmin,ou=Usuarios,dc=gabriel,dc=labredes,dc=info" read
   by * none
@@ -86,7 +86,7 @@ to dn.subtree="ou=Usuarios,dc=gabriel,dc=labredes,dc=info"
 
 ## Postfix
 
-#### LDAP mapping
+### LDAP mapping
 
 Antes de configurar o postfix para entregar e receber emails, criaremos algumas [tabelas de pesquisa LDAP que o](http://www.postfix.org/ldap_table.5.html) postfix usará para realizar as consultas na base. A tabela a seguir fornece uma visão geral de como as informações são consultadas:
 
@@ -94,7 +94,7 @@ Antes de configurar o postfix para entregar e receber emails, criaremos algumas 
 
 Crie um diretório `/etc/postfix/ldap`para manter todas as definições de mapa em um só lugar. Como os arquivos neste diretório conterão suas credenciais LDAP, defina seu proprietário como `postfix:postfix`e seu `umask` como `0100`.
 
-As informações de conexão para o diretório LDAP são comuns a todos os arquivos de mapeamento, ou seja, o trecho a seguir pode ser copiado para a parte  inicial de cada arquivo citado na tabela acima.
+As informações de conexão para o diretório LDAP são comuns a todos os arquivos de mapeamento, ou seja, o trecho a seguir pode ser copiado para a parte inicial de cada arquivo citado na tabela acima.
 
 ```text
 # copie este trecho de autenticação para todos
@@ -183,7 +183,7 @@ root@servidor:~# chown postfix:postfix /etc/postfix/ldap/*
 root@servidor:~# chmod 400 /etc/postfix/ldap/*
 ```
 
-#### Caixas de Correio
+### Caixas de Correio
 
 O Postfix implementa métodos diferentes para entregar e-mails ao destinatário. Nesta configuração, usaremos a _classe de domínio de alias virtual_ e a _classe de domínio da caixa de correio virtual_ . Cada caixa de correio final é associada a um endereço definido `<username>@$myhostname.` O`$myhostname`contém o nome do host definido em `/etc/postfix/main.cf`e será listado no arquivo`virtual_mailbox_domains`. Todos os domínios hospedados são tratados como _domínios de alias virtual_ e serão listados `virtual_alias_domains`com o mapa LDAP definido anteriormente e mapeados para o endereço da caixa de correio final.
 
@@ -227,11 +227,11 @@ Reinicie o serviço do postfix e verifique se foi startado com êxito, em seguid
 
 Enquanto o Postfix servirá como servidor e retransmissão `smtp,` o`Dovecot`servirá como servidor[`IMAP`](https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol)para recuperar as mensagens armazenadas no host de correio. O Dovecot também inclui uma implementação [SASL](https://en.wikipedia.org/wiki/Simple_Authentication_and_Security_Layer) que pode ser usada pelo postfix para autenticar usuários.
 
-#### Configuração
+### Configuração
 
 A configuração do dovecot está espalhada por vários arquivos em `/etc/dovecot/`e `/etc/dovecot/conf.d`e contém alguns blocos básicos de configuração, que podem ser incluídos descomentando eles.
 
-#### Localização de Maildir <a id="maildir_location"></a>
+### Localização de Maildir <a id="maildir_location"></a>
 
 A localização do Maildir está definida em `/etc/dovecot/conf.d/10-mail.conf`. O diretório doméstico do usuário será lido no LDAP é '/Maildir' e será anexado com a seguinte configuração.
 
@@ -239,7 +239,7 @@ A localização do Maildir está definida em `/etc/dovecot/conf.d/10-mail.conf`.
 maildir:~/Maildir
 ```
 
-#### Back-end LDAP <a id="ldap_backend"></a>
+### Back-end LDAP <a id="ldap_backend"></a>
 
 O Dovecot pode usar o LDAP como um banco de dados de senha para autenticação, bem como um banco de dados do usuário para obter informações como o local do maildir e o `UID`e `GID`do usuário.
 
@@ -324,7 +324,7 @@ binddn cn=admin,dc=gabriel,dc=labredes,dc=info
 bindpw <sua senha secreta>
 ```
 
-Ao realizar todas as modificações, reinicie os serviços responsáveis pelas consultas a base ldap para armazenamento local. 
+Ao realizar todas as modificações, reinicie os serviços responsáveis pelas consultas a base ldap para armazenamento local.
 
 O nslcd é um daemon que fará consultas LDAP para processos locais com base em um arquivo de configuração simples.
 
@@ -345,7 +345,7 @@ Após reiniciar os serviços, execute o comando a seguir para obter os usuários
 # getent passwd
 ```
 
-A saída do comando deverá retornar todos os usuários cadastrados no `/etc/passwd` + os usuarios da sua base LDAP. 
+A saída do comando deverá retornar todos os usuários cadastrados no `/etc/passwd` + os usuarios da sua base LDAP.
 
 Exemplo:
 
@@ -368,7 +368,7 @@ samuel:x:10004:10004:Samuel Martins:/home/samuel:/bin/bash
 
 Uma parte importante na configuração do servidor e na infra-estrutura inclui manter uma maneira fácil de procurar interfaces de rede e endereços IP por nome, através da criação de um Domain Name System \(DNS\). O uso de nomes de domínio totalmente qualificados \(FQDNs\), em vez de endereços IP para especificar endereços de rede, facilita a configuração de serviços e aplicações. Configurar o seu próprio DNS para a sua rede privada é uma ótima maneira de melhorar a gestão dos seus servidores.
 
-Para utilizar o Thunderbird Mail na máquina física, será necessário adicionar o DNS do seu servidor onde está o Postfix, para o thunderbird ter acesso as configurações fornecidas pelo servidor de email, consequentemente ser capaz de enviar e receber e-mails 
+Para utilizar o Thunderbird Mail na máquina física, será necessário adicionar o DNS do seu servidor onde está o Postfix, para o thunderbird ter acesso as configurações fornecidas pelo servidor de email, consequentemente ser capaz de enviar e receber e-mails
 
 ## Referências
 
@@ -376,6 +376,4 @@ Para utilizar o Thunderbird Mail na máquina física, será necessário adiciona
 * [http://www.postfix.org/documentation.html](http://www.postfix.org/documentation.html)
 * [https://linux.die.net/man/8/nscd](https://linux.die.net/man/8/nscd)
 * [https://linux.die.net/man/8/nslcd](https://linux.die.net/man/8/nslcd)
-
-
 
