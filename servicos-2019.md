@@ -86,7 +86,7 @@ Antes de configurar o postfix para entregar e receber emails, criaremos algumas 
 
 ![](.gitbook/assets/image%20%281%29.png)
 
-Crie um diretório `/etc/postfix/ldap`para manter todas as definições de mapa em um só lugar. Como os arquivos neste diretório conterão suas credenciais LDAP, defina seu proprietário como `postfix:postfix`e seu uid como `0100`.
+Crie um diretório `/etc/postfix/ldap`para manter todas as definições de mapa em um só lugar. Como os arquivos neste diretório conterão suas credenciais LDAP, defina seu proprietário como `postfix:postfix`e seu `umask` como `0100`.
 
 As informações de conexão para o diretório LDAP são comuns a todos os arquivos de mapeamento, ou seja, o trecho a seguir pode ser copiado para a parte  inicial de cada arquivo citado na tabela acima.
 
@@ -133,7 +133,7 @@ result_attribute = maildrop
 
 query_filter = maildrop=%s
 result_attribute = homeDirectory
-result_format = %s/mailbox/
+result_format = %s/Maildir/
 ```
 
 [`virtual_uid_maps`](https://www.vennedey.net/code/490abca5cd9343d271a7fbbde1a6a48ec9a4e0898457612d4c6a33683af5c4bc)\`\`
