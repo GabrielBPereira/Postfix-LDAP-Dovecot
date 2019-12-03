@@ -13,6 +13,12 @@ Este relatório apresenta a integração dos serviços de envio e recebimento de
 
 ## LDAP
 
+#### Estrutura Organizacional
+
+![Figura 1 - Estrutura organizacional.](.gitbook/assets/image%20%283%29.png)
+
+![Figura 2 - Base LDAP.](.gitbook/assets/image%20%284%29.png)
+
 A seguir temos o usuário `diego`, utilizado posteriormente nos testes e nos exemplos:
 
 ```text
@@ -286,6 +292,8 @@ Após realizar as configurações necessários nos arquivos do dovecot, reinicie
 
 ## Integração de usuários
 
+Para que os usuários da base LDAP sejam reconhecidos no sistema Linux, os procedimentos a seguir devem ser seguidos rigorosamente. Não é necessário fazer alterações nos arquivos de configuração do PAM se os usuários do e-mail não forem fazer login no sistema.
+
 Instale os pacotes do `ldap` responsáveis pela configuração da base, a fim de obter a integração dos usuários LDAP no sistema CentOS.
 
 ```text
@@ -316,11 +324,11 @@ binddn cn=admin,dc=gabriel,dc=labredes,dc=info
 bindpw <sua senha secreta>
 ```
 
-Ao realizar todas as modificações, reinicie os serviço responsáveis pelas consultas a base ldap para armazenamento local. 
+Ao realizar todas as modificações, reinicie os serviços responsáveis pelas consultas a base ldap para armazenamento local. 
 
 O nslcd é um daemon que fará consultas LDAP para processos locais com base em um arquivo de configuração simples.
 
-Nscd é um daemon que fornece um cache para as solicitações de serviço de nome mais comuns. O arquivo de configuração padrão, /etc/nscd.conf , determina o comportamento do daemon de cache.
+Nscd é um daemon que fornece um cache para as solicitações de serviço de nome mais comuns. O arquivo de configuração padrão, `/etc/nscd.conf` , determina o comportamento do daemon de cache.
 
 ```text
 # systemctl stop nslcd
@@ -331,13 +339,15 @@ Nscd é um daemon que fornece um cache para as solicitações de serviço de nom
 # systemctl enable nscd
 ```
 
-Após reiniciar os serviços, execute o comando a seguir para obter os usuários da base LDAP no seu `/etc/passwd`
+Após reiniciar os serviços, execute o comando a seguir para obter os usuários da base LDAP.
 
 ```text
 # getent passwd
 ```
 
-A saída do comando deverá retornar todos os usuários cadastrados no `/etc/passwd` + os usuarios da sua base LDAP. Exemplo:
+A saída do comando deverá retornar todos os usuários cadastrados no `/etc/passwd` + os usuarios da sua base LDAP. 
+
+Exemplo:
 
 ```text
 named:x:25:25:Named:/var/named:/sbin/nologin
