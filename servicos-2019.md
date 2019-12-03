@@ -113,7 +113,7 @@ search_base = ou=Usuarios,dc=gabriel,dc=labredes,dc=info
 scope = sub
 ```
 
-\`\`[`virtual_alias_domains`](https://www.vennedey.net/code/490abca5cd9343d271a7fbbde1a6a48e37f3135055434e6fe0c16679edb534ed)
+[`virtual_alias_domains`](https://www.vennedey.net/code/490abca5cd9343d271a7fbbde1a6a48e37f3135055434e6fe0c16679edb534ed)
 
 ```text
 # cole aqui o trecho de autenticação
@@ -123,7 +123,7 @@ result_attribute = mailacceptinggeneralid
 result_format = %d
 ```
 
-[`virtual_alias_maps`](https://www.vennedey.net/code/490abca5cd9343d271a7fbbde1a6a48e6f574cbe1300b5aa9ae4aaae5deddcaf)\`\`
+[`virtual_alias_maps`](https://www.vennedey.net/code/490abca5cd9343d271a7fbbde1a6a48e6f574cbe1300b5aa9ae4aaae5deddcaf)
 
 ```text
 # cole aqui o trecho de autenticação
@@ -132,7 +132,7 @@ query_filter = mailacceptinggeneralid=%s
 result_attribute = maildrop
 ```
 
-\`\`[`virtual_mailbox_maps`](https://www.vennedey.net/code/490abca5cd9343d271a7fbbde1a6a48ebfdf6e05fd2f5c2659ac3798deea9ba5)\`\`
+[`virtual_mailbox_maps`](https://www.vennedey.net/code/490abca5cd9343d271a7fbbde1a6a48ebfdf6e05fd2f5c2659ac3798deea9ba5)
 
 ```text
 # cole aqui o trecho de autenticação
@@ -142,7 +142,7 @@ result_attribute = homeDirectory
 result_format = %s/Maildir/
 ```
 
-[`virtual_uid_maps`](https://www.vennedey.net/code/490abca5cd9343d271a7fbbde1a6a48ec9a4e0898457612d4c6a33683af5c4bc)\`\`
+[`virtual_uid_maps`](https://www.vennedey.net/code/490abca5cd9343d271a7fbbde1a6a48ec9a4e0898457612d4c6a33683af5c4bc)
 
 ```text
 # cole aqui o trecho de autenticação
