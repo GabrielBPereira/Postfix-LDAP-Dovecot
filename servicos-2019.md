@@ -1,10 +1,3 @@
----
-description: >-
-  Gabriel de Barros Pereira - 6º Período - Curso Superior de Tecnologia em
-  Sistemas para Internet - Instituto Federal de Educação, Ciência e Tecnologia
-  do Sudeste de Minas Gerais, campus Barbacena.
----
-
 # Postfix + LDAP + Dovecot
 
 ## Introdução
