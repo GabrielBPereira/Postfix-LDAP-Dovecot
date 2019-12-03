@@ -10,6 +10,6 @@ Professor: Herlon Ayres Camargo</br>
 
 Este relatório tem como intuito realizar a integração dos serviços de envio e recebimento de e-mail, através dos protocolos SMTP e IMAP, utilizando os softwares Postfix e Dovecot integrados a uma base de dados LDAP.
 
-* Veja mais em: [ldap+postfix](servicos-2019.md)
+* Veja mais em: [PostfixLDAP](servicos-2019.md)
 
 
