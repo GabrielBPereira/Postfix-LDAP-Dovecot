@@ -151,7 +151,7 @@ query_filter = maildrop=%s
 result_attribute = uidNumber
 ```
 
-[`smtpd_sender_login_maps`](https://www.vennedey.net/code/490abca5cd9343d271a7fbbde1a6a48e9d8789a67b49d7c206067fe8a2462756)\`\`
+[`smtpd_sender_login_maps`](https://www.vennedey.net/code/490abca5cd9343d271a7fbbde1a6a48e9d8789a67b49d7c206067fe8a2462756)
 
 ```text
 # cole aqui o trecho de autenticação
