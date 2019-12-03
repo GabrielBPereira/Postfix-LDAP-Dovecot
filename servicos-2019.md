@@ -39,7 +39,7 @@ mailacceptinggeneralid: diego@blockchain.com
 maildrop: diego@fsociety.com
 ```
 
-O diretório LDAP precisa manter várias informações necessárias relacionadas ao`Postfix`e `Dovecot`para o funcionamento dos serviços.
+O diretório LDAP precisa manter várias informações necessárias relacionadas ao`Postfix`e ao`Dovecot`para o funcionamento dos serviços.
 
 * Nome de usuário e senha para autenticação
 * `UID`e `GID`para gerenciar permissões do usuário`maildir`
