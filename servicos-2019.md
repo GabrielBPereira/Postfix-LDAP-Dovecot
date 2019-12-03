@@ -226,7 +226,7 @@ A configuração do dovecot está espalhada por vários arquivos em `/etc/doveco
 
 ### Localização de Maildir <a id="maildir_location"></a>
 
-A localização do Maildir está definida em `/etc/dovecot/conf.d/10-mail.conf`. O diretório doméstico do usuário será lido no LDAP é '/Maildir' e será anexado com a seguinte configuração.
+A localização do Maildir está definida em `/etc/dovecot/conf.d/10-mail.conf`. O diretório doméstico do usuário que será lido no LDAP é `/Maildir` e será anexado com a seguinte configuração.
 
 ```text
 maildir:~/Maildir
