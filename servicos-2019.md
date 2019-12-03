@@ -113,7 +113,7 @@ search_base = ou=Usuarios,dc=gabriel,dc=labredes,dc=info
 scope = sub
 ```
 
-\`\`[`virtual_alias_domains`](https://www.vennedey.net/code/490abca5cd9343d271a7fbbde1a6a48e37f3135055434e6fe0c16679edb534ed) 
+\`\`[`virtual_alias_domains`](https://www.vennedey.net/code/490abca5cd9343d271a7fbbde1a6a48e37f3135055434e6fe0c16679edb534ed)
 
 ```text
 # cole aqui o trecho de autenticação
